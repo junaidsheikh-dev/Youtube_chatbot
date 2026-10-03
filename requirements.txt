@@ -1,0 +1,19 @@
+# LangChain Core
+langchain
+langchain-core
+
+# Google Gemini Integration
+langchain-google-genai
+google-generativeai
+
+# groq Integration
+langchain-groq
+
+#Youtube transcript api integration
+youtube-transcript-api
+
+# Environment Variable Management
+python-dotenv
+
+# grandalf to draw graphs
+grandalf
