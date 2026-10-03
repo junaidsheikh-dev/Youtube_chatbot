@@ -9,7 +9,7 @@ google-generativeai
 # groq Integration
 langchain-groq
 
-#Youtube transcript api integration
+# Youtube transcript api integration
 youtube-transcript-api
 
 # Environment Variable Management
@@ -17,3 +17,6 @@ python-dotenv
 
 # grandalf to draw graphs
 grandalf
+
+# text splitters
+langchain-text-splitters
