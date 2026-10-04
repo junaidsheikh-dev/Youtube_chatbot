@@ -1,6 +1,7 @@
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 from backend.rag.retriever import retriever
 
 load_dotenv()
@@ -14,13 +15,15 @@ prompt = PromptTemplate(
     input_variables=['context', 'question']
 )
 
+parser = StrOutputParser()
+
 question = "summarize all the discussion in video in 5 key points"
 retrieved_doc = retriever.invoke(question)
 
 context_text = "\n\n".join(doc.page_content for doc in retrieved_doc)
 
-final_prompt = prompt.invoke({"context" : context_text, "question" : question})
+chain  = prompt | model | parser
 
-answer = model.invoke(final_prompt)
+answer = chain.invoke({"context" : context_text, "question" : question})
 
 print(answer.content)
