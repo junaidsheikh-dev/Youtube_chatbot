@@ -17,7 +17,7 @@ prompt = PromptTemplate(
 
 parser = StrOutputParser()
 
-question = "summarize all the discussion in video in 5 key points"
+question = "memory cementing tricks"
 retrieved_doc = retriever.invoke(question)
 
 context_text = "\n\n".join(doc.page_content for doc in retrieved_doc)
@@ -26,4 +26,4 @@ chain  = prompt | model | parser
 
 answer = chain.invoke({"context" : context_text, "question" : question})
 
-print(answer.content)
+print(answer)

@@ -1,10 +1,11 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_core.documents import Document
 from backend.youtube.transcript import get_transcript
 
-transcript = get_transcript("gUV5DJb6KGs")
+def create_documents(video_id):
 
-splitter = RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=200)
+    transcript = get_transcript(video_id)
 
-documents = splitter.create_documents([transcript])
+    splitter = RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=200)
+
+    return splitter.create_documents([transcript])
 
