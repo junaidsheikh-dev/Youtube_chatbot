@@ -2,6 +2,12 @@
 langchain
 langchain-core
 
+# Langchain community
+langchain-community
+
+# FAISS
+faiss-cpu
+
 # Google Gemini Integration
 langchain-google-genai
 google-generativeai
