@@ -2,7 +2,7 @@ from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from backend.rag.retriever import retriever
+from backend.rag.vector_embedding import get_vector_store
 
 load_dotenv()
 
@@ -17,13 +17,17 @@ prompt = PromptTemplate(
 
 parser = StrOutputParser()
 
-question = "memory cementing tricks"
-retrieved_doc = retriever.invoke(question)
+def get_answer(question, video_id):
 
-context_text = "\n\n".join(doc.page_content for doc in retrieved_doc)
+    vector_store = get_vector_store(video_id)
+    retriever = vector_store.as_retriever(search_type='similarity', search_kwargs = {'k' : 4})
+    retrieved_doc = retriever.invoke(question)
 
-chain  = prompt | model | parser
 
-answer = chain.invoke({"context" : context_text, "question" : question})
+    context_text = "\n\n".join(doc.page_content for doc in retrieved_doc)
 
-print(answer)
+    chain  = prompt | model | parser
+
+    answer = chain.invoke({"context" : context_text, "question" : question})
+
+    return answer

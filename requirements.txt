@@ -26,3 +26,6 @@ grandalf
 
 # text splitters
 langchain-text-splitters
+
+# streamlit integration
+streamlit
